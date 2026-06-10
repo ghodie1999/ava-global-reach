@@ -13,6 +13,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesWarehousingRouteImport } from './routes/services.warehousing'
 import { Route as ServicesSourcingRouteImport } from './routes/services.sourcing'
+import { Route as ServicesLogisticsRouteImport } from './routes/services.logistics'
 import { Route as ServicesInspectionRouteImport } from './routes/services.inspection'
 import { Route as ServicesConsolidationRouteImport } from './routes/services.consolidation'
 
@@ -36,6 +37,11 @@ const ServicesSourcingRoute = ServicesSourcingRouteImport.update({
   path: '/sourcing',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesLogisticsRoute = ServicesLogisticsRouteImport.update({
+  id: '/logistics',
+  path: '/logistics',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesInspectionRoute = ServicesInspectionRouteImport.update({
   id: '/inspection',
   path: '/inspection',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRouteWithChildren
   '/services/consolidation': typeof ServicesConsolidationRoute
   '/services/inspection': typeof ServicesInspectionRoute
+  '/services/logistics': typeof ServicesLogisticsRoute
   '/services/sourcing': typeof ServicesSourcingRoute
   '/services/warehousing': typeof ServicesWarehousingRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRouteWithChildren
   '/services/consolidation': typeof ServicesConsolidationRoute
   '/services/inspection': typeof ServicesInspectionRoute
+  '/services/logistics': typeof ServicesLogisticsRoute
   '/services/sourcing': typeof ServicesSourcingRoute
   '/services/warehousing': typeof ServicesWarehousingRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRouteWithChildren
   '/services/consolidation': typeof ServicesConsolidationRoute
   '/services/inspection': typeof ServicesInspectionRoute
+  '/services/logistics': typeof ServicesLogisticsRoute
   '/services/sourcing': typeof ServicesSourcingRoute
   '/services/warehousing': typeof ServicesWarehousingRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/services/consolidation'
     | '/services/inspection'
+    | '/services/logistics'
     | '/services/sourcing'
     | '/services/warehousing'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/services/consolidation'
     | '/services/inspection'
+    | '/services/logistics'
     | '/services/sourcing'
     | '/services/warehousing'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/services/consolidation'
     | '/services/inspection'
+    | '/services/logistics'
     | '/services/sourcing'
     | '/services/warehousing'
   fileRoutesById: FileRoutesById
@@ -134,6 +146,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSourcingRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/logistics': {
+      id: '/services/logistics'
+      path: '/logistics'
+      fullPath: '/services/logistics'
+      preLoaderRoute: typeof ServicesLogisticsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/inspection': {
       id: '/services/inspection'
       path: '/inspection'
@@ -154,6 +173,7 @@ declare module '@tanstack/react-router' {
 interface ServicesRouteChildren {
   ServicesConsolidationRoute: typeof ServicesConsolidationRoute
   ServicesInspectionRoute: typeof ServicesInspectionRoute
+  ServicesLogisticsRoute: typeof ServicesLogisticsRoute
   ServicesSourcingRoute: typeof ServicesSourcingRoute
   ServicesWarehousingRoute: typeof ServicesWarehousingRoute
 }
@@ -161,6 +181,7 @@ interface ServicesRouteChildren {
 const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesConsolidationRoute: ServicesConsolidationRoute,
   ServicesInspectionRoute: ServicesInspectionRoute,
+  ServicesLogisticsRoute: ServicesLogisticsRoute,
   ServicesSourcingRoute: ServicesSourcingRoute,
   ServicesWarehousingRoute: ServicesWarehousingRoute,
 }
