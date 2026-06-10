@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesWarehousingRouteImport } from './routes/services.warehousing'
 import { Route as ServicesSourcingRouteImport } from './routes/services.sourcing'
 import { Route as ServicesInspectionRouteImport } from './routes/services.inspection'
+import { Route as ServicesConsolidationRouteImport } from './routes/services.consolidation'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -40,10 +41,16 @@ const ServicesInspectionRoute = ServicesInspectionRouteImport.update({
   path: '/inspection',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesConsolidationRoute = ServicesConsolidationRouteImport.update({
+  id: '/consolidation',
+  path: '/consolidation',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/consolidation': typeof ServicesConsolidationRoute
   '/services/inspection': typeof ServicesInspectionRoute
   '/services/sourcing': typeof ServicesSourcingRoute
   '/services/warehousing': typeof ServicesWarehousingRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/consolidation': typeof ServicesConsolidationRoute
   '/services/inspection': typeof ServicesInspectionRoute
   '/services/sourcing': typeof ServicesSourcingRoute
   '/services/warehousing': typeof ServicesWarehousingRoute
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/consolidation': typeof ServicesConsolidationRoute
   '/services/inspection': typeof ServicesInspectionRoute
   '/services/sourcing': typeof ServicesSourcingRoute
   '/services/warehousing': typeof ServicesWarehousingRoute
@@ -68,6 +77,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/services'
+    | '/services/consolidation'
     | '/services/inspection'
     | '/services/sourcing'
     | '/services/warehousing'
@@ -75,6 +85,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/services'
+    | '/services/consolidation'
     | '/services/inspection'
     | '/services/sourcing'
     | '/services/warehousing'
@@ -82,6 +93,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/services'
+    | '/services/consolidation'
     | '/services/inspection'
     | '/services/sourcing'
     | '/services/warehousing'
@@ -129,16 +141,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesInspectionRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/consolidation': {
+      id: '/services/consolidation'
+      path: '/consolidation'
+      fullPath: '/services/consolidation'
+      preLoaderRoute: typeof ServicesConsolidationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
 
 interface ServicesRouteChildren {
+  ServicesConsolidationRoute: typeof ServicesConsolidationRoute
   ServicesInspectionRoute: typeof ServicesInspectionRoute
   ServicesSourcingRoute: typeof ServicesSourcingRoute
   ServicesWarehousingRoute: typeof ServicesWarehousingRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesConsolidationRoute: ServicesConsolidationRoute,
   ServicesInspectionRoute: ServicesInspectionRoute,
   ServicesSourcingRoute: ServicesSourcingRoute,
   ServicesWarehousingRoute: ServicesWarehousingRoute,
