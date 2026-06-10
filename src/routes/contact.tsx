@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowRight, Phone, Mail, MapPin, MessageCircle, CheckCircle, Send } from "lucide-react";
-import { setQuoteContext, clearQuoteContext, buildWhatsAppMessage } from "@/lib/quote-context";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -31,16 +30,8 @@ function ContactPage() {
     setSubmitted(true);
   };
 
-  const whatsappNumber = "1234567890";
-  const whatsappMessage = encodeURIComponent(buildWhatsAppMessage(formData));
-
-  useEffect(() => {
-    setQuoteContext(formData);
-  }, [formData]);
-
-  useEffect(() => {
-    return () => clearQuoteContext();
-  }, []);
+  const whatsappNumber = "+1234567890";
+  const whatsappMessage = encodeURIComponent("Hello AVA Logistics! I'm interested in your services and would like to learn more.");
 
   return (
     <div className="min-h-screen pt-20">
