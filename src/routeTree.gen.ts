@@ -13,6 +13,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesWarehousingRouteImport } from './routes/services.warehousing'
 import { Route as ServicesSourcingRouteImport } from './routes/services.sourcing'
+import { Route as ServicesInspectionRouteImport } from './routes/services.inspection'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -34,16 +35,23 @@ const ServicesSourcingRoute = ServicesSourcingRouteImport.update({
   path: '/sourcing',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesInspectionRoute = ServicesInspectionRouteImport.update({
+  id: '/inspection',
+  path: '/inspection',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/inspection': typeof ServicesInspectionRoute
   '/services/sourcing': typeof ServicesSourcingRoute
   '/services/warehousing': typeof ServicesWarehousingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/inspection': typeof ServicesInspectionRoute
   '/services/sourcing': typeof ServicesSourcingRoute
   '/services/warehousing': typeof ServicesWarehousingRoute
 }
@@ -51,18 +59,30 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/inspection': typeof ServicesInspectionRoute
   '/services/sourcing': typeof ServicesSourcingRoute
   '/services/warehousing': typeof ServicesWarehousingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/services' | '/services/sourcing' | '/services/warehousing'
+  fullPaths:
+    | '/'
+    | '/services'
+    | '/services/inspection'
+    | '/services/sourcing'
+    | '/services/warehousing'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/services' | '/services/sourcing' | '/services/warehousing'
+  to:
+    | '/'
+    | '/services'
+    | '/services/inspection'
+    | '/services/sourcing'
+    | '/services/warehousing'
   id:
     | '__root__'
     | '/'
     | '/services'
+    | '/services/inspection'
     | '/services/sourcing'
     | '/services/warehousing'
   fileRoutesById: FileRoutesById
@@ -102,15 +122,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSourcingRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/inspection': {
+      id: '/services/inspection'
+      path: '/inspection'
+      fullPath: '/services/inspection'
+      preLoaderRoute: typeof ServicesInspectionRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
 
 interface ServicesRouteChildren {
+  ServicesInspectionRoute: typeof ServicesInspectionRoute
   ServicesSourcingRoute: typeof ServicesSourcingRoute
   ServicesWarehousingRoute: typeof ServicesWarehousingRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesInspectionRoute: ServicesInspectionRoute,
   ServicesSourcingRoute: ServicesSourcingRoute,
   ServicesWarehousingRoute: ServicesWarehousingRoute,
 }
