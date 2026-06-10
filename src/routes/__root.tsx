@@ -84,10 +84,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "AVA Logistics provides end-to-end global sourcing, warehousing, inspection, and international logistics services. Trusted partner for importers, e-commerce brands, manufacturers, and SMEs." },
       { name: "author", content: "AVA Logistics" },
       { property: "og:title", content: "AVA Logistics | Global Trade Made Predictable" },
-      { property: "og:description", content: "End-to-end sourcing, warehousing, inspection and international logistics managed through one accountable partner." },
+      { property: "og:description", content: "AVA Logistics provides end-to-end global sourcing, warehousing, inspection, and international logistics services. Trusted partner for importers, e-commerce brands, manufacturers, and SMEs." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@AVALogistics" },
+      { name: "twitter:title", content: "AVA Logistics | Global Trade Made Predictable" },
+      { name: "twitter:description", content: "AVA Logistics provides end-to-end global sourcing, warehousing, inspection, and international logistics services. Trusted partner for importers, e-commerce brands, manufacturers, and SMEs." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8690a8eb-ac43-42eb-ae43-9a5a79f4e105/id-preview-a952f498--8eba5975-fc01-4c60-8e8a-28c8cc160e6c.lovable.app-1781090703447.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8690a8eb-ac43-42eb-ae43-9a5a79f4e105/id-preview-a952f498--8eba5975-fc01-4c60-8e8a-28c8cc160e6c.lovable.app-1781090703447.png" },
     ],
     links: [
       {
