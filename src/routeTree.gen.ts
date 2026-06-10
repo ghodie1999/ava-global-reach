@@ -9,38 +9,222 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesWarehousingRouteImport } from './routes/services.warehousing'
+import { Route as ServicesSourcingRouteImport } from './routes/services.sourcing'
+import { Route as ServicesLogisticsRouteImport } from './routes/services.logistics'
+import { Route as ServicesInspectionRouteImport } from './routes/services.inspection'
+import { Route as ServicesConsolidationRouteImport } from './routes/services.consolidation'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesRoute = CaseStudiesRouteImport.update({
+  id: '/case-studies',
+  path: '/case-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesWarehousingRoute = ServicesWarehousingRouteImport.update({
+  id: '/warehousing',
+  path: '/warehousing',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesSourcingRoute = ServicesSourcingRouteImport.update({
+  id: '/sourcing',
+  path: '/sourcing',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesLogisticsRoute = ServicesLogisticsRouteImport.update({
+  id: '/logistics',
+  path: '/logistics',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesInspectionRoute = ServicesInspectionRouteImport.update({
+  id: '/inspection',
+  path: '/inspection',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesConsolidationRoute = ServicesConsolidationRouteImport.update({
+  id: '/consolidation',
+  path: '/consolidation',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/contact': typeof ContactRoute
+  '/industries': typeof IndustriesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/services/consolidation': typeof ServicesConsolidationRoute
+  '/services/inspection': typeof ServicesInspectionRoute
+  '/services/logistics': typeof ServicesLogisticsRoute
+  '/services/sourcing': typeof ServicesSourcingRoute
+  '/services/warehousing': typeof ServicesWarehousingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/contact': typeof ContactRoute
+  '/industries': typeof IndustriesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/services/consolidation': typeof ServicesConsolidationRoute
+  '/services/inspection': typeof ServicesInspectionRoute
+  '/services/logistics': typeof ServicesLogisticsRoute
+  '/services/sourcing': typeof ServicesSourcingRoute
+  '/services/warehousing': typeof ServicesWarehousingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/contact': typeof ContactRoute
+  '/industries': typeof IndustriesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/services/consolidation': typeof ServicesConsolidationRoute
+  '/services/inspection': typeof ServicesInspectionRoute
+  '/services/logistics': typeof ServicesLogisticsRoute
+  '/services/sourcing': typeof ServicesSourcingRoute
+  '/services/warehousing': typeof ServicesWarehousingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/case-studies'
+    | '/contact'
+    | '/industries'
+    | '/services'
+    | '/sitemap.xml'
+    | '/services/consolidation'
+    | '/services/inspection'
+    | '/services/logistics'
+    | '/services/sourcing'
+    | '/services/warehousing'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/case-studies'
+    | '/contact'
+    | '/industries'
+    | '/services'
+    | '/sitemap.xml'
+    | '/services/consolidation'
+    | '/services/inspection'
+    | '/services/logistics'
+    | '/services/sourcing'
+    | '/services/warehousing'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/case-studies'
+    | '/contact'
+    | '/industries'
+    | '/services'
+    | '/sitemap.xml'
+    | '/services/consolidation'
+    | '/services/inspection'
+    | '/services/logistics'
+    | '/services/sourcing'
+    | '/services/warehousing'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CaseStudiesRoute: typeof CaseStudiesRoute
+  ContactRoute: typeof ContactRoute
+  IndustriesRoute: typeof IndustriesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies': {
+      id: '/case-studies'
+      path: '/case-studies'
+      fullPath: '/case-studies'
+      preLoaderRoute: typeof CaseStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +232,72 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/warehousing': {
+      id: '/services/warehousing'
+      path: '/warehousing'
+      fullPath: '/services/warehousing'
+      preLoaderRoute: typeof ServicesWarehousingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/sourcing': {
+      id: '/services/sourcing'
+      path: '/sourcing'
+      fullPath: '/services/sourcing'
+      preLoaderRoute: typeof ServicesSourcingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/logistics': {
+      id: '/services/logistics'
+      path: '/logistics'
+      fullPath: '/services/logistics'
+      preLoaderRoute: typeof ServicesLogisticsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/inspection': {
+      id: '/services/inspection'
+      path: '/inspection'
+      fullPath: '/services/inspection'
+      preLoaderRoute: typeof ServicesInspectionRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/consolidation': {
+      id: '/services/consolidation'
+      path: '/consolidation'
+      fullPath: '/services/consolidation'
+      preLoaderRoute: typeof ServicesConsolidationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
 
+interface ServicesRouteChildren {
+  ServicesConsolidationRoute: typeof ServicesConsolidationRoute
+  ServicesInspectionRoute: typeof ServicesInspectionRoute
+  ServicesLogisticsRoute: typeof ServicesLogisticsRoute
+  ServicesSourcingRoute: typeof ServicesSourcingRoute
+  ServicesWarehousingRoute: typeof ServicesWarehousingRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesConsolidationRoute: ServicesConsolidationRoute,
+  ServicesInspectionRoute: ServicesInspectionRoute,
+  ServicesLogisticsRoute: ServicesLogisticsRoute,
+  ServicesSourcingRoute: ServicesSourcingRoute,
+  ServicesWarehousingRoute: ServicesWarehousingRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CaseStudiesRoute: CaseStudiesRoute,
+  ContactRoute: ContactRoute,
+  IndustriesRoute: IndustriesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
